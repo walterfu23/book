@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2002
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksAPI.REST", "BooksAPI.REST\BooksAPI.REST.csproj", "{356165A3-ECAC-4FC3-B41E-41A64C116B27}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksAPI.OData", "BooksAPI.OData\BooksAPI.OData.csproj", "{B5A47CBA-2386-4D35-A758-E3BEAF18ADAF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{356165A3-ECAC-4FC3-B41E-41A64C116B27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{356165A3-ECAC-4FC3-B41E-41A64C116B27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{356165A3-ECAC-4FC3-B41E-41A64C116B27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{356165A3-ECAC-4FC3-B41E-41A64C116B27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5A47CBA-2386-4D35-A758-E3BEAF18ADAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5A47CBA-2386-4D35-A758-E3BEAF18ADAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5A47CBA-2386-4D35-A758-E3BEAF18ADAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5A47CBA-2386-4D35-A758-E3BEAF18ADAF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {657FE781-C065-4228-9C6F-8257EB3E5534}
+	EndGlobalSection
+EndGlobal
