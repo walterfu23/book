@@ -1,0 +1,9 @@
+﻿dotnet ef dbcontext scaffold "server = DESKTOP-L6QMG5I\SQLEXPRESS; Database = BooksDB; Trusted_Connection = True" Microsoft.EntityFrameworkCore.SqlServer -c BooksDBContext -o Model
+dotnet ef dbcontext scaffold "Data Source=ssalt465hdy;Initial Catalog=ddnv1_flex;Integrated Security=False;User Id=sqluser;Password=SQLfilenet1" Microsoft.EntityFrameworkCore.SqlServer -c BooksDBContext -o Model
+
+scaffold-dbcontext  "Data Source=ssalt465hdy;Initial Catalog=ddnv1_flex;Integrated Security=False;User Id=sqluser;Password=SQLfilenet1" Microsoft.EntityFrameworkCore.SqlServer -Context BooksDBContext -o Model -F
+
+dotnet ef migrations add init_for_sqlserver
+
+http://www.azurecoder.net/2018/02/19/creating-odata-api-asp-net-core-2-0/
+

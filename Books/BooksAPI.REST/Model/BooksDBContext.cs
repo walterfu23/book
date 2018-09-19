@@ -31,7 +31,11 @@ namespace BooksAPI.REST.Model
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-           
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer(@"Data Source=ssalt465hdy;Initial Catalog=ddnv1_flex;Integrated Security=False;User Id=sqluser;Password=SQLfilenet1");
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -52,6 +56,10 @@ namespace BooksAPI.REST.Model
             {
                 entity.ToTable("Biz_Doc");
 
+                entity.HasIndex(e => e.DocName)
+                    .HasName("UX_Biz_Doc")
+                    .IsUnique();
+
                 entity.Property(e => e.Comment)
                     .HasMaxLength(250)
                     .IsUnicode(false);
@@ -66,6 +74,7 @@ namespace BooksAPI.REST.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.DocName)
+                    .IsRequired()
                     .HasColumnName("Doc_Name")
                     .HasMaxLength(250)
                     .IsUnicode(false);
