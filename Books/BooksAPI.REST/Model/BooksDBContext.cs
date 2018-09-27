@@ -57,7 +57,11 @@ namespace BooksAPI.REST.Model
                 entity.ToTable("Biz_Doc");
 
                 entity.HasIndex(e => e.DocName)
-                    .HasName("UX_Biz_Doc")
+                    .HasName("UX_Biz_Doc_Name")
+                    .IsUnique();
+
+                entity.HasIndex(e => e.DocNum)
+                    .HasName("UX_Biz_Doc_Num")
                     .IsUnique();
 
                 entity.Property(e => e.Comment)
@@ -80,6 +84,7 @@ namespace BooksAPI.REST.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.DocNum)
+                    .IsRequired()
                     .HasColumnName("Doc_Num")
                     .HasMaxLength(250)
                     .IsUnicode(false);
@@ -97,6 +102,14 @@ namespace BooksAPI.REST.Model
             modelBuilder.Entity<BizDocRev>(entity =>
             {
                 entity.ToTable("Biz_Doc_Rev");
+
+                entity.HasIndex(e => new { e.DocId, e.RevName })
+                    .HasName("UX_Biz_Doc_Id_Rev_Name")
+                    .IsUnique();
+
+                entity.Property(e => e.Comment)
+                    .HasMaxLength(250)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.CreateTime)
                     .HasColumnName("Create_Time")
@@ -127,6 +140,11 @@ namespace BooksAPI.REST.Model
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
+                entity.Property(e => e.RevName)
+                    .IsRequired()
+                    .HasColumnName("Rev_Name")
+                    .HasMaxLength(250);
+
                 entity.Property(e => e.RevNormalized)
                     .HasColumnName("Rev_Normalized")
                     .HasMaxLength(100)
@@ -146,6 +164,10 @@ namespace BooksAPI.REST.Model
             modelBuilder.Entity<BizDocRevPage>(entity =>
             {
                 entity.ToTable("Biz_Doc_Rev_Page");
+
+                entity.HasIndex(e => new { e.RevId, e.PgNum })
+                    .HasName("UX_Biz_Doc_Rev_Id_Page_Num")
+                    .IsUnique();
 
                 entity.Property(e => e.CreateTime)
                     .HasColumnName("Create_Time")

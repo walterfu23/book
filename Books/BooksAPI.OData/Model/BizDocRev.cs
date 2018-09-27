@@ -18,6 +18,7 @@ namespace BooksAPI.OData.Model
         public string LangNormalized { get; set; }
         public string RevOrig { get; set; }
         public string RevNormalized { get; set; }
+        public string Comment { get; set; }
         public string Creator { get; set; }
         public DateTime CreateTime { get; set; }
         public string Modifier { get; set; }

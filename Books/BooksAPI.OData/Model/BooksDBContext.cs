@@ -107,6 +107,10 @@ namespace BooksAPI.OData.Model
                     .HasName("UX_Biz_Doc_Id_Rev_Name")
                     .IsUnique();
 
+                entity.Property(e => e.Comment)
+                    .HasMaxLength(250)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.CreateTime)
                     .HasColumnName("Create_Time")
                     .HasColumnType("datetime");
