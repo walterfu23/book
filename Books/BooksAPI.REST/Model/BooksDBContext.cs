@@ -19,6 +19,7 @@ namespace BooksAPI.REST.Model
         public virtual DbSet<BizDoc> BizDoc { get; set; }
         public virtual DbSet<BizDocRev> BizDocRev { get; set; }
         public virtual DbSet<BizDocRevPage> BizDocRevPage { get; set; }
+        public virtual DbSet<BizPageField> BizPageField { get; set; }
         public virtual DbSet<Book> Book { get; set; }
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<DocDocType> DocDocType { get; set; }
@@ -103,8 +104,8 @@ namespace BooksAPI.REST.Model
             {
                 entity.ToTable("Biz_Doc_Rev");
 
-                entity.HasIndex(e => new { e.DocId, e.RevName })
-                    .HasName("UX_Biz_Doc_Id_Rev_Name")
+                entity.HasIndex(e => new { e.DocId, e.LangNormalized, e.RevNormalized })
+                    .HasName("UX_Biz_Doc_Rev")
                     .IsUnique();
 
                 entity.Property(e => e.Comment)
@@ -139,11 +140,6 @@ namespace BooksAPI.REST.Model
                     .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(false);
-
-                entity.Property(e => e.RevName)
-                    .IsRequired()
-                    .HasColumnName("Rev_Name")
-                    .HasMaxLength(250);
 
                 entity.Property(e => e.RevNormalized)
                     .HasColumnName("Rev_Normalized")
@@ -198,7 +194,6 @@ namespace BooksAPI.REST.Model
                 entity.Property(e => e.PgNum).HasColumnName("Pg_Num");
 
                 entity.Property(e => e.PgType)
-                    .IsRequired()
                     .HasColumnName("Pg_Type")
                     .HasMaxLength(250)
                     .IsUnicode(false);
@@ -210,6 +205,55 @@ namespace BooksAPI.REST.Model
                     .HasForeignKey(d => d.RevId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Biz_Doc_Rev_Page_Biz_Doc_Rev");
+            });
+
+            modelBuilder.Entity<BizPageField>(entity =>
+            {
+                entity.ToTable("Biz_Page_Field");
+
+                entity.HasIndex(e => new { e.PgId, e.Name })
+                    .HasName("UX_Biz_Page_Field")
+                    .IsUnique();
+
+                entity.Property(e => e.Active)
+                    .IsRequired()
+                    .HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.Comment).HasMaxLength(250);
+
+                entity.Property(e => e.CreateTime)
+                    .HasColumnName("Create_Time")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.Creator)
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ModTime)
+                    .HasColumnName("Mod_Time")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.Modifier)
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(250);
+
+                entity.Property(e => e.PgId).HasColumnName("Pg_Id");
+
+                entity.Property(e => e.RegEx).HasMaxLength(250);
+
+                entity.Property(e => e.Type).HasMaxLength(50);
+
+                entity.HasOne(d => d.Pg)
+                    .WithMany(p => p.BizPageField)
+                    .HasForeignKey(d => d.PgId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Biz_Page_Field_Biz_Doc_Rev_Page");
             });
 
             modelBuilder.Entity<Book>(entity =>

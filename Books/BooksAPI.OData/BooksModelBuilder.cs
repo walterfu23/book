@@ -77,6 +77,16 @@ namespace BooksAPI.OData
                 .Select()// Allow for the $select Command; 
                 ;
 
+            builder.EntitySet<BizPageField>(nameof(BizPageField))
+                .EntityType
+                .Filter() // Allow for the $filter Command
+                .Count() // Allow for the $count Command
+                .Expand() // Allow for the $expand Command
+                .OrderBy() // Allow for the $orderby Command
+                .Page() // Allow for the $top and $skip Commands
+                .Select()// Allow for the $select Command; 
+                ;
+
             return builder.GetEdmModel();
         }
     }

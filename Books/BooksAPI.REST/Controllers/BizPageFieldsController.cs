@@ -10,15 +10,15 @@ using Microsoft.EntityFrameworkCore;
 namespace BooksAPI.REST.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Authors")]
-    public class AuthorsController : Controller
+    [Route("api/BizPageFields")]
+    public class BizPageFieldsController : Controller
     {
         private readonly BooksDBContext context;
-        public AuthorsController(BooksDBContext context) => this.context = context;
+        public BizPageFieldsController(BooksDBContext context) => this.context = context;
 
-        // GET: api/Authors
+        // GET: api/BizPageFields
         [HttpGet]
 //        public IEnumerable<Author> Get() => context.Author.Include(a => a.Book).ThenInclude(b => b.Publisher);
-        public IEnumerable<Author> Get() => context.Author;
+        public IEnumerable<BizPageField> Get() => context.BizPageField;
     }
 }

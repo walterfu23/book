@@ -5,6 +5,11 @@ namespace BooksAPI.REST.Model
 {
     public partial class BizDocRevPage
     {
+        public BizDocRevPage()
+        {
+            BizPageField = new HashSet<BizPageField>();
+        }
+
         public int Id { get; set; }
         public int RevId { get; set; }
         public bool Active { get; set; }
@@ -18,5 +23,6 @@ namespace BooksAPI.REST.Model
         public DateTime ModTime { get; set; }
 
         public BizDocRev Rev { get; set; }
+        public ICollection<BizPageField> BizPageField { get; set; }
     }
 }

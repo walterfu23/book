@@ -13,7 +13,6 @@ namespace BooksAPI.OData.Model
         public int Id { get; set; }
         public int DocId { get; set; }
         public bool Active { get; set; }
-        public string RevName { get; set; }
         public string LangOrig { get; set; }
         public string LangNormalized { get; set; }
         public string RevOrig { get; set; }

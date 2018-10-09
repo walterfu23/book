@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 namespace BooksAPI.REST.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Publisher")]
+    [Route("api/Publishers")]
     public class PublisherController : Controller
     {
         private readonly BooksDBContext context;
